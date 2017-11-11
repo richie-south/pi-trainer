@@ -1,8 +1,8 @@
 import React from 'react'
-import {StyleSheet , View} from 'react-native'
+import {StyleSheet, View, TouchableNativeFeedback, Text} from 'react-native'
 import {TryView} from './src/components/pages/try-view'
 import {StackNavigator} from 'react-navigation'
-import { Constants } from 'expo'
+import {StatusBar} from './src/components/ui/status-bar'
 
 class App extends React.Component {
   static navigationOptions = {
@@ -12,18 +12,53 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.statusBar} />
-        <TryView />
+        <StatusBar/>
+        <TouchableNativeFeedback
+          onPress={() => {
+            this.props.navigation.navigate('Try')
+          }}
+          background={TouchableNativeFeedback.SelectableBackground()}
+        >
+          <View style={styles.buttonFirst}>
+            <Text style={styles.buttonText}>REFERENCE</Text>
+          </View>
+        </TouchableNativeFeedback>
+
+        <TouchableNativeFeedback
+          onPress={() => {
+            this.props.navigation.navigate('Try')
+          }}
+          background={TouchableNativeFeedback.SelectableBackground()}
+        >
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>PRACTISE</Text>
+          </View>
+        </TouchableNativeFeedback>
+
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  statusBar: {
-    backgroundColor: "#F24949",
-    height: Constants.statusBarHeight,
+  buttonFirst: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+
+  button: {
+    flex: 1,
+    backgroundColor: '#EE5E5E',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    fontSize: 32,
+    color: '#FFFFFF',
+  },
+
   container: {
     flex: 1,
     display: 'flex',
@@ -36,8 +71,9 @@ const styles = StyleSheet.create({
  export default StackNavigator({
   Main: {
     screen: App,
-    navigationOptions: {
-      tabBarLabel: 'Train',
-    },
+  },
+
+  Try: {
+    screen: TryView,
   },
 }, {})
