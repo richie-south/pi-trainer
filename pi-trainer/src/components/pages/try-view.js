@@ -1,9 +1,10 @@
 import React from 'react'
 import {StyleSheet, View, Text, ScrollView} from 'react-native'
-import {compose, withHandlers, withState, lifecycle} from 'recompose'
+import {compose, withHandlers, withState, lifecycle, setStatic} from 'recompose'
 import {Numberpad} from '../ui/numberpad'
 import {piNumbers} from '../../lib/number'
 import {PiStatusBar} from '../ui/pi-status-bar'
+import {StatusBar} from '../ui/status-bar'
 const RCTUIManager = require('NativeModules').UIManager
 
 const isNumberCorrect = (numbers, entered, position) =>
@@ -14,6 +15,9 @@ const getSuccesRate = (total, errors) => {
 }
 
 const enhance = compose(
+  setStatic('navigationOptions', {
+    header: null,
+  }),
   withState('inputed', 'setInputed', [{ value: '3.', isCorrect: true}]),
   withState('errors', 'setErrors', 0),
   withState('succesRate', 'setSuccesRate', 100),
@@ -38,7 +42,7 @@ const enhance = compose(
 
 const StatelessTry = ({setMyScrollRef, inputed, addNumber, errors, succesRate}) =>
   <View style={styles.container}>
-
+    <StatusBar/>
     <ScrollView
       ref={setMyScrollRef}
       style={styles.inputed}
@@ -68,7 +72,6 @@ const StatelessTry = ({setMyScrollRef, inputed, addNumber, errors, succesRate}) 
       />
     </View>
   </View>
-
 
 const styles = StyleSheet.create({
   textHolder: {
