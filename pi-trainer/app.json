@@ -1,5 +1,13 @@
 {
   "expo": {
-    "sdkVersion": "22.0.0"
+    "sdkVersion": "22.0.0",
+
+    "name": "Pi Trainer",
+    "icon": "./ic_launcher_APP.png",
+    "version": "1.0.0",
+    "slug": "pi-trainer",
+    "android": {
+      "package": "com.richie-south.pi-trainer"
+    }
   }
 }
