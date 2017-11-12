@@ -14,12 +14,12 @@ const enhance = compose(
   })
 )
 
-const NumberButton = ({padClick, text}) =>
+const NumberButton = ({padClick, text, style = undefined}) =>
 <TouchableNativeFeedback
   onPress={padClick}
   background={TouchableNativeFeedback.SelectableBackground()}
 >
-  <View style={styles.button}>
+  <View style={[styles.button, style]}>
     <Text style={styles.butonText}>{text}</Text>
   </View>
 </TouchableNativeFeedback>
@@ -74,19 +74,27 @@ const StatelessNumberpad = ({padClick}) =>
           text={0}
           padClick={padClick.bind(null, 0)}
         />
+        <NumberButton
+          text={'CLEAR'}
+          style={styles.lightButton}
+          padClick={padClick.bind(null, null)}
+        />
       </Row>
     </Column>
   </View>
 
 
 const styles = StyleSheet.create({
+  lightButton: {
+    backgroundColor: '#E35A5A',
+  },
 
   button: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     height: 76,
-    backgroundColor: '#F24949',
+    backgroundColor: '#EE5E5E',
   },
 
   butonText: {
