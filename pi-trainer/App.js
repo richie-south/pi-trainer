@@ -3,6 +3,7 @@ import {StyleSheet, View, TouchableNativeFeedback, Text} from 'react-native'
 import {TryView} from './src/components/pages/try-view'
 import {StackNavigator} from 'react-navigation'
 import {StatusBar} from './src/components/ui/status-bar'
+import {Reference} from './src/components/pages/reference'
 
 class App extends React.Component {
   static navigationOptions = {
@@ -15,7 +16,7 @@ class App extends React.Component {
         <StatusBar/>
         <TouchableNativeFeedback
           onPress={() => {
-            this.props.navigation.navigate('Try')
+            this.props.navigation.navigate('Reference')
           }}
           background={TouchableNativeFeedback.SelectableBackground()}
         >
@@ -34,7 +35,6 @@ class App extends React.Component {
             <Text style={styles.buttonText}>PRACTISE</Text>
           </View>
         </TouchableNativeFeedback>
-
       </View>
     )
   }
@@ -75,5 +75,9 @@ const styles = StyleSheet.create({
 
   Try: {
     screen: TryView,
+  },
+
+  Reference: {
+    screen: Reference,
   },
 }, {})
