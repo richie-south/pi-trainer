@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, View, Text, ScrollView} from 'react-native'
-import {compose, withHandlers, withState, lifecycle, setStatic} from 'recompose'
+import {compose, withHandlers, withState, lifecycle, setStatic, defaultProps} from 'recompose'
 import {Numberpad} from '../ui/numberpad'
 import {piNumbers} from '../../lib/number'
 import {PiStatusBar} from '../ui/pi-status-bar'
@@ -8,7 +8,7 @@ import {StatusBar} from '../ui/status-bar'
 const RCTUIManager = require('NativeModules').UIManager
 
 const isNumberCorrect = (numbers, entered, position) =>
-  +numbers[position] === +entered
+  +numbers[position +1] === +entered
 
 const getSuccesRate = (total, errors) => {
   return Math.floor(100 - ((errors / total) * 100 ))
@@ -18,12 +18,23 @@ const enhance = compose(
   setStatic('navigationOptions', {
     header: null,
   }),
-  withState('inputed', 'setInputed', [{ value: '3.', isCorrect: true}]),
+  defaultProps({
+    startValue: [{ value: '3.', isCorrect: true}],
+  }),
+  withState('inputed', 'setInputed', ({startValue}) => startValue),
   withState('errors', 'setErrors', 0),
   withState('succesRate', 'setSuccesRate', 100),
   withState('myScrollRef', 'setMyScrollRef', null),
   withHandlers({
-    addNumber: ({inputed, setInputed, myScrollRef, errors, setErrors, setSuccesRate}) => (number) => {
+    addNumber: ({inputed, setInputed, myScrollRef, errors, setErrors, setSuccesRate, startValue}) => (number) => {
+      // clear is pressed
+      if (number === null) {
+        setSuccesRate(100)
+        setErrors(0)
+        setInputed(startValue)
+        return
+      }
+
       const isCorrect = isNumberCorrect(piNumbers, number, [...inputed, number].length-1)
       const current = [...inputed, {value: number, isCorrect}]
       const currentErrors = errors + (isCorrect ? 0 : 1)
