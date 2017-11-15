@@ -62,7 +62,7 @@ const StatelessTry = ({setMyScrollRef, inputed, addNumber, errors, succesRate}) 
       {inputed.map(({value, isCorrect}, index) =>
         <Text
           key={index}
-          style={[styles.inputedText, isCorrect ? styles.correctNumber : styles.incorrectNumber]}
+          style={[styles.inputedText, isCorrect ? undefined : styles.incorrectNumber]}
         >
           {value}
         </Text>
@@ -88,8 +88,6 @@ const styles = StyleSheet.create({
   textHolder: {
     textAlign: 'left',
   },
-
-  correctNumber: {},
 
   incorrectNumber: {
     color: '#444444'
