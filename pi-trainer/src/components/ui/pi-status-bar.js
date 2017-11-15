@@ -4,10 +4,11 @@ import {
   Text,
   View,
 } from 'react-native'
-import {compose, withHandlers} from 'recompose'
+import {compose, withHandlers, onlyUpdateForKeys} from 'recompose'
 import {Column, Row} from './layout'
 
 const enhance = compose(
+  onlyUpdateForKeys(['digits', 'errors', 'precentage'])
 )
 
 const StatusProp = ({text, value}) =>

@@ -5,19 +5,20 @@ import {
   View,
   TouchableNativeFeedback,
 } from 'react-native'
-import {compose, withHandlers} from 'recompose'
+import {compose, withHandlers, onlyUpdateForKeys} from 'recompose'
 import {Column, Row} from './layout'
 
 const enhance = compose(
   withHandlers({
     padClick: ({onPress}) => (nr) => onPress(nr)
-  })
+  }),
+  onlyUpdateForKeys(['padClick'])
 )
 
 const NumberButton = ({padClick, text, style = undefined}) =>
 <TouchableNativeFeedback
   onPress={padClick}
-  background={TouchableNativeFeedback.SelectableBackground()}
+  background={TouchableNativeFeedback.SelectableBackgroundBorderless()}
 >
   <View style={[styles.button, style]}>
     <Text style={styles.butonText}>{text}</Text>
@@ -25,7 +26,7 @@ const NumberButton = ({padClick, text, style = undefined}) =>
 </TouchableNativeFeedback>
 
 const StatelessNumberpad = ({padClick}) =>
-  <View>
+  <View style={styles.container}>
     <Column>
       <Row>
         <NumberButton
@@ -89,12 +90,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#E35A5A',
   },
 
+  container: {
+    backgroundColor: '#EE5E5E',
+  },
+
   button: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     height: 76,
-    backgroundColor: '#EE5E5E',
+
   },
 
   butonText: {
