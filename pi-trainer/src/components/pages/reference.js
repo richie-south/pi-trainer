@@ -44,11 +44,18 @@ const enhance = compose(
       setFontSize(fontSize-- <= 4 ? 4 : fontSize--),
 
     doubbleLoadSize: ({loadSize, setLoadSize, groupSize, setGroupSize, setNumbers}) => () => {
-      const newLoadSize = loadSize*2
+      const newLoadSize = loadSize * 2
       setLoadSize(newLoadSize)
 
       setGroupSize(groupSize)
-      setNumbers(groupArray(groupSize, piNumbers.split('').slice(0, newLoadSize)))
+      setNumbers(
+        groupArray(groupSize,
+          piNumbers
+            .split('')
+            .slice(0, newLoadSize
+          )
+        )
+      )
     }
 
   })
