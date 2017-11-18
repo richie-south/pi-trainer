@@ -22,7 +22,7 @@ const enhance = compose(
     header: null,
   }),
   withState('groupSize', 'setGroupSize', 8),
-  withState('fontSize', 'setFontSize', 50),
+  withState('fontSize', 'setFontSize', 60),
   withState('loadSize', 'setLoadSize', 256),
   withState('numbers', 'setNumbers', ({groupSize, loadSize}) =>
     groupArray(groupSize, piNumbers.split('').slice(0, loadSize))),
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
 
   numbers: {
-    textAlign: 'left',
+    textAlign: 'center',
     flexDirection: 'row',
   },
 
