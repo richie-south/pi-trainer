@@ -6,8 +6,19 @@
     "icon": "./ic_launcher_APP.png",
     "version": "1.0.0",
     "slug": "pi-trainer",
+    "orientation": "portrait",
+    "loading": {
+      "icon": "./ic_launcher_APP.png",
+      "splash": {
+        "backgroundColor": "#FF7F7F"
+      },
+      "backgroundColor": "#FF7F7F",
+      "hideExponentText": true
+    },
     "android": {
-      "package": "com.richie-south.pi-trainer"
+      "package": "com.pi-trainer",
+      "versionCode": 1,
+      "icon": "./ic_launcher_APP.png"
     }
   }
 }
