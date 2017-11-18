@@ -20,13 +20,19 @@ const NumberButton = ({padClick, text, style = undefined}) =>
   onPress={padClick}
   background={TouchableNativeFeedback.SelectableBackgroundBorderless()}
 >
-  <View style={[styles.button, style]}>
-    <Text style={styles.butonText}>{text}</Text>
+  <View
+    style={[styles.button, style]}
+  >
+    <Text
+      style={styles.butonText}
+    >{text}</Text>
   </View>
 </TouchableNativeFeedback>
 
 const StatelessNumberpad = ({padClick}) =>
-  <View style={styles.container}>
+  <View
+    style={styles.container}
+  >
     <Column>
       <Row>
         <NumberButton
@@ -88,6 +94,7 @@ const StatelessNumberpad = ({padClick}) =>
 const styles = StyleSheet.create({
   lightButton: {
     backgroundColor: '#E35A5A',
+    borderRadius: 4,
   },
 
   container: {
