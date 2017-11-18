@@ -21,8 +21,8 @@ const enhance = compose(
   setStatic('navigationOptions', {
     header: null,
   }),
-  withState('groupSize', 'setGroupSize', 6),
-  withState('fontSize', 'setFontSize', 60),
+  withState('groupSize', 'setGroupSize', 8),
+  withState('fontSize', 'setFontSize', 50),
   withState('loadSize', 'setLoadSize', 256),
   withState('numbers', 'setNumbers', ({groupSize, loadSize}) =>
     groupArray(groupSize, piNumbers.split('').slice(0, loadSize))),
