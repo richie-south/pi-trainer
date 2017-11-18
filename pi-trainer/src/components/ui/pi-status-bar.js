@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 12,
-    color: '#444444'
+    color: '#C44C4C'
   },
 
   value: {
