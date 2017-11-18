@@ -52,13 +52,17 @@ const enhance = compose(
 )
 
 const StatelessTry = ({setMyScrollRef, inputed, addNumber, errors, succesRate}) =>
-  <View style={styles.container}>
+  <View
+    style={styles.container}
+  >
     <StatusBar/>
     <ScrollView
       ref={setMyScrollRef}
       style={styles.inputed}
     >
-      <Text style={styles.textHolder}>
+      <Text
+        style={styles.textHolder}
+      >
       {inputed.map(({value, isCorrect}, index) =>
         <Text
           key={index}
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     flexDirection: 'row',
     lineHeight: 80,
-    fontSize: 70,
+    fontSize: 60,
     color: '#FFFFFF'
   },
 
