@@ -34,7 +34,7 @@ const StatelessPiStatusBar = ({digits, errors, precentage}) =>
           value={errors}
         />
         <StatusProp
-          text='precentage'
+          text='success rate'
           value={precentage}
         />
       </Row>
