@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import {compose, withHandlers, onlyUpdateForKeys} from 'recompose'
 import {Column, Row} from './layout'
+import {Notification} from './notification'
 
 const enhance = compose(
   onlyUpdateForKeys(['digits', 'errors', 'precentage'])
@@ -21,8 +22,11 @@ const StatusProp = ({text, value}) =>
     </Text>
   </View>
 
-const StatelessPiStatusBar = ({digits, errors, precentage}) =>
-  <View>
+const StatelessPiStatusBar = ({digits, errors, precentage, widthAnim}) =>
+  <View
+    style={{position: 'relative'}}
+  >
+    <Notification/>
     <Column>
       <Row>
         <StatusProp
