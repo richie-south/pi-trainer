@@ -1,21 +1,26 @@
 {
   "expo": {
-    "sdkVersion": "22.0.0",
-
     "name": "Pi Trainer",
-    "icon": "./ic_launcher_APP.png",
-    "version": "1.0.0",
     "slug": "pi-trainer",
+    "sdkVersion": "22.0.0",
+    "privacy": "public",
+    "icon": "./web_hi_res_512.png",
+    "version": "1.0.0",
+
     "orientation": "portrait",
     "loading": {
-      "icon": "./ic_launcher_APP.png",
+      "icon": "./web_hi_res_512.png",
       "backgroundColor": "#FF7F7F",
       "hideExponentText": true
     },
     "android": {
-      "package": "com.pi-trainer",
-      "versionCode": 1,
-      "icon": "./ic_launcher_APP.png"
+      "package": "com.richardsoderman.pitrainer",
+      "versionCode": 2,
+      "icon": "./web_hi_res_512.png",
+      "permissions": [],
+      "splash": {
+        "backgroundColor": "#FF7F7F"
+      }
     }
   }
 }
