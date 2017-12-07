@@ -26,7 +26,7 @@ const StatelessPiStatusBar = ({digits, errors, precentage, widthAnim}) =>
   <View
     style={{position: 'relative'}}
   >
-    <Notification/>
+    {/* <Notification/> */}
     <Column>
       <Row>
         <StatusProp
