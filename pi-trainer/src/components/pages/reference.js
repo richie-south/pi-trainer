@@ -7,6 +7,9 @@ import {StatusBar} from '../ui/status-bar'
 import {PaddedBox} from '../ui/layout'
 import {IncreaseDecreaseView} from '../ui/increase-decrease'
 import R from 'ramda'
+import {connect} from 'react-redux'
+import {increaseTextSize, decreaseTextSize, increaseGroupSize, decreaseGroupSize} from '../../lib/actions/actions'
+
 const RCTUIManager = require('NativeModules').UIManager
 
 const groupArray = (amount, array) => {
@@ -18,36 +21,40 @@ const groupArray = (amount, array) => {
 }
 
 const enhance = compose(
+  connect(store => {
+    groupSize: store.groupSize,
+    fontSize: store.fontSize,
+  }),
   setStatic('navigationOptions', {
     header: null,
   }),
-  withState('groupSize', 'setGroupSize', 8),
-  withState('fontSize', 'setFontSize', 60),
+
   withState('loadSize', 'setLoadSize', 256),
   withState('numbers', 'setNumbers', ({groupSize, loadSize}) =>
     groupArray(groupSize, piNumbers.split('').slice(0, loadSize))),
   withHandlers({
-    increaseGroupsizePress: ({setNumbers, setGroupSize, groupSize, loadSize}) => () => {
+
+    increaseGroupsizePress: ({setNumbers, groupSize, loadSize, dispatch}) => () => {
       const newGroupSize = ++groupSize
-      setGroupSize(newGroupSize)
+      dispatch(increaseGroupSize(newGroupSize))
+      increaseGroupSize
       setNumbers(groupArray(newGroupSize, piNumbers.split('').slice(0, loadSize)))
     },
-    decreaseGroupsizePress: ({setNumbers, setGroupSize, groupSize, loadSize}) => () => {
+    decreaseGroupsizePress: ({setNumbers, groupSize, loadSize, dispatch}) => () => {
       const newGroupSize = groupSize-- <= 0 ? 0 : groupSize--
-      setGroupSize(newGroupSize)
+      dispatch(decreaseGroupSize(newGroupSize))
       setNumbers(groupArray(newGroupSize, piNumbers.split('').slice(0, loadSize)))
     },
 
-    increaseFontSizePress: ({fontSize, setFontSize}) => () =>
-      setFontSize(++fontSize),
-    decreaseFontSizePress: ({fontSize, setFontSize}) => () =>
-      setFontSize(fontSize-- <= 4 ? 4 : fontSize--),
+    increaseFontSizePress: ({fontSize, dispatch}) => () =>
+      dispatch(increaseTextSize(++fontSize)),
+    decreaseFontSizePress: ({fontSize, dispatch}) => () =>
+      dispatch(decreaseTextSize(fontSize-- <= 4 ? 4 : fontSize--)),
 
-    doubbleLoadSize: ({loadSize, setLoadSize, groupSize, setGroupSize, setNumbers}) => () => {
+    doubbleLoadSize: ({loadSize, setLoadSize, groupSize, setNumbers, dispatch}) => () => {
       const newLoadSize = loadSize * 2
       setLoadSize(newLoadSize)
 
-      setGroupSize(groupSize)
       setNumbers(
         groupArray(groupSize,
           piNumbers
