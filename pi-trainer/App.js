@@ -14,32 +14,30 @@ class App extends React.Component {
 
   render() {
     return (
-      <Provider store={store}>
-      <View style={styles.container}>
-        <StatusBar/>
-        <TouchableNativeFeedback
-          onPress={() => {
-            this.props.navigation.navigate('Reference')
-          }}
-          background={TouchableNativeFeedback.SelectableBackground()}
-        >
-          <View style={styles.buttonFirst}>
-            <Text style={styles.buttonText}>REFERENCE</Text>
-          </View>
-        </TouchableNativeFeedback>
+        <View style={styles.container}>
+          <StatusBar/>
+          <TouchableNativeFeedback
+            onPress={() => {
+              this.props.navigation.navigate('Reference')
+            }}
+            background={TouchableNativeFeedback.SelectableBackground()}
+          >
+            <View style={styles.buttonFirst}>
+              <Text style={styles.buttonText}>REFERENCE</Text>
+            </View>
+          </TouchableNativeFeedback>
 
-        <TouchableNativeFeedback
-          onPress={() => {
-            this.props.navigation.navigate('Try')
-          }}
-          background={TouchableNativeFeedback.SelectableBackground()}
-        >
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>PRACTISE</Text>
-          </View>
-        </TouchableNativeFeedback>
-      </View>
-      </Provider>
+          <TouchableNativeFeedback
+            onPress={() => {
+              this.props.navigation.navigate('Try')
+            }}
+            background={TouchableNativeFeedback.SelectableBackground()}
+          >
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>PRACTISE</Text>
+            </View>
+          </TouchableNativeFeedback>
+        </View>
     )
   }
 }
@@ -72,7 +70,7 @@ const styles = StyleSheet.create({
   },
 })
 
- export default StackNavigator({
+const RootNavigator = StackNavigator({
   Main: {
     screen: App,
   },
@@ -85,3 +83,8 @@ const styles = StyleSheet.create({
     screen: Reference,
   },
 }, {})
+
+ export default () =>
+  <Provider store={store}>
+    <RootNavigator/>
+  </Provider>
