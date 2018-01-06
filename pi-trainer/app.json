@@ -5,7 +5,7 @@
     "sdkVersion": "22.0.0",
     "privacy": "public",
     "icon": "./web_hi_res_512.png",
-    "version": "1.0.0",
+    "version": "4.0.0",
 
     "orientation": "portrait",
     "loading": {
@@ -15,7 +15,7 @@
     },
     "android": {
       "package": "com.richardsoderman.pitrainer",
-      "versionCode": 2,
+      "versionCode": 4,
       "icon": "./web_hi_res_512.png",
       "permissions": [],
       "splash": {
