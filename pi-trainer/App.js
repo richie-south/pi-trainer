@@ -4,6 +4,8 @@ import {TryView} from './src/components/pages/try-view'
 import {StackNavigator} from 'react-navigation'
 import {StatusBar} from './src/components/ui/status-bar'
 import {Reference} from './src/components/pages/reference'
+import {Provider} from 'react-redux'
+import {store} from './src/lib/store'
 
 class App extends React.Component {
   static navigationOptions = {
@@ -12,6 +14,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <Provider store={store}>
       <View style={styles.container}>
         <StatusBar/>
         <TouchableNativeFeedback
@@ -36,6 +39,7 @@ class App extends React.Component {
           </View>
         </TouchableNativeFeedback>
       </View>
+      </Provider>
     )
   }
 }
