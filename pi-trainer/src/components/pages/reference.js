@@ -21,14 +21,13 @@ const groupArray = (amount, array) => {
 }
 
 const enhance = compose(
-  connect(store => {
-    groupSize: store.groupSize,
-    fontSize: store.fontSize,
-  }),
+  connect(state => ({
+    groupSize: state.groupSize,
+    fontSize: state.textSize,
+  })),
   setStatic('navigationOptions', {
     header: null,
   }),
-
   withState('loadSize', 'setLoadSize', 256),
   withState('numbers', 'setNumbers', ({groupSize, loadSize}) =>
     groupArray(groupSize, piNumbers.split('').slice(0, loadSize))),
