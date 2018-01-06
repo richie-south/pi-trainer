@@ -1,3 +1,4 @@
+import {AsyncStorage} from 'react-native'
 
 export const setRecordPi = (value) => {
   AsyncStorage.setItem('@piTrainer:recordPI', value)

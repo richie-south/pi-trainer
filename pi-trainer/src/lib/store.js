@@ -1,18 +1,13 @@
 import {createStore, applyMiddleware} from 'redux'
 import {rootReducer} from './reducers/index'
 import thunk from 'redux-thunk'
+import {AsyncStorage} from 'react-native'
 import {setRecordPi, setRecordTime} from './actions/actions'
 
 export const store = createStore(
   rootReducer,
   applyMiddleware(thunk)
 )
-
-store.dispatch(
-  loadAsyncStorage()
-).then(() => {
-  console.log('Success in loading async storage!')
-})
 
 // TODO: promise all..
 const loadAsyncStorage = () => async (dispatch) => {
@@ -30,8 +25,16 @@ const loadAsyncStorage = () => async (dispatch) => {
       dispatch(setRecordPi(pi))
       dispatch(setRecordTime(time))
       dispatch(activateAchievements())
+      dispatch(increaseGroupSize(groupSize))
+      dispatch(increaseTextSize(textSize))
     }
   } catch (error) {
     // Error retrieving data
   }
 }
+
+store.dispatch(
+  loadAsyncStorage()
+).then(() => {
+  console.log('Success in loading async storage!')
+})
